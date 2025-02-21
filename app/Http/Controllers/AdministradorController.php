@@ -36,8 +36,8 @@ class AdministradorController extends Controller
 
     public function actualizarEquipo($partido)
     {
-        $local = Equipo::where('equipo', 'Racing')->first();
-        $visitante = Equipo::where('equipo', $partido->rival)->first();
+        $local = Equipo::where('nombre', 'Racing')->first();
+        $visitante = Equipo::where('nombre', $partido->rival)->first();
 
         if (!$local || !$visitante) {
             return;

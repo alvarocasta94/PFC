@@ -1,3 +1,87 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
 h1 {
     text-align: center;
-  }
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.tabla-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.tabla-clasificacion {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tabla-clasificacion th, .tabla-clasificacion td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.tabla-clasificacion th {
+    background-color: #007bff;
+    color: white;
+}
+
+.tabla-clasificacion tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.tabla-clasificacion tr:hover {
+    background-color: #ddd;
+}
+
+.fondo-verde {
+    background-color: #98FB98 !important; /* Color verde claro */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .tabla-container {
+        padding: 10px;
+    }
+
+    .tabla-clasificacion th, .tabla-clasificacion td {
+        padding: 8px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .tabla-clasificacion {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .tabla-clasificacion th, .tabla-clasificacion td {
+        display: inline-block;
+        width: auto;
+        text-align: left;
+    }
+
+    .tabla-clasificacion th {
+        background-color: #007bff;
+        color: white;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+}

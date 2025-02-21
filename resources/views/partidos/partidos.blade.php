@@ -86,7 +86,10 @@
             color: black;
         }
         .swiper-pagination {
-            position: relative;
+            display: flex;
+            justify-content: center;
+            flex-wrap: nowrap; /* Evita que los puntos se envuelvan a la siguiente línea */
+            width: 100%; /* Asegura que el contenedor de paginación ocupe todo el ancho disponible */
             margin-top: 10px;
         }
     </style>

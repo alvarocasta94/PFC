@@ -18,7 +18,7 @@
         <ul>
             <li><a href="{{ url('/admin/dashboard') }}">Dashboard</a></li>
             <li><a href="{{ url('/admin/partidos') }}">Gestión de Partidos</a></li>
-            <li><a href="{{ url('/admin/clasificacion') }}">Clasificación</a></li>
+            <li><a href="{{ url('/admin/equipos') }}">Clasificación</a></li>
             <li>
                 <a href="{{ route('admin.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     Cerrar sesión
