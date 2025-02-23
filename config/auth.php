@@ -8,13 +8,13 @@ return [
     |--------------------------------------------------------------------------
     |
     | Esta opción controla el guard y la configuración de restablecimiento de
-    | contraseña por defecto. En este caso, solo usamos el guard 'admin'.
+    | contraseña por defecto. En este caso, solo usamos el guard 'web'.
     |
     */
 
     'defaults' => [
-        'guard' => 'admin', // Cambiado de 'web' a 'admin'
-        'passwords' => 'admins',
+        'guard' => 'web', // Cambiado de 'admin' a 'web'
+        'passwords' => 'users',
     ],
 
     /*
@@ -22,14 +22,19 @@ return [
     | Authentication Guards
     |--------------------------------------------------------------------------
     |
-    | Definimos el guard de autenticación para los administradores.
+    | Definimos los guards de autenticación para los usuarios y administradores.
     |
     */
 
     'guards' => [
+        'web' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+
         'admin' => [
             'driver' => 'session',
-            'provider' => 'admins',
+            'provider' => 'administradores',
         ],
     ],
 
@@ -38,12 +43,17 @@ return [
     | User Providers
     |--------------------------------------------------------------------------
     |
-    | Definimos el proveedor de usuarios para los administradores.
+    | Definimos los proveedores de usuarios para los usuarios y administradores.
     |
     */
 
     'providers' => [
-        'admins' => [
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
+
+        'administradores' => [
             'driver' => 'eloquent',
             'model' => App\Models\Administrador::class,
         ],
@@ -54,14 +64,14 @@ return [
     | Resetting Passwords
     |--------------------------------------------------------------------------
     |
-    | Configuración para el restablecimiento de contraseñas de los administradores.
+    | Configuración para el restablecimiento de contraseñas de los usuarios.
     |
     */
 
     'passwords' => [
-        'admins' => [
-            'provider' => 'admins',
-            'table' => 'password_reset_tokens',
+        'users' => [
+            'provider' => 'users',
+            'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
         ],
