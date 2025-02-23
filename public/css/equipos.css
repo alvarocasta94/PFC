@@ -1,98 +1,149 @@
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 0;
-}
+    /* Ajuste para que el título no afecte la responsividad */
+    h1 {
+        width: 100%;
+        text-align: center;
+        color: white;
+        background-color: #2d8e2d;
+        padding: 20px;
+        font-size: 2rem;
+        margin: 0 auto;
+    }
 
-h1 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #333;
-}
+    /* Contenedor principal */
+    .container-fluid {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 12px;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    }
 
-.tabla-container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-    overflow-x: auto; /* Añadido para permitir el desplazamiento horizontal */
-}
-
-.tabla-clasificacion {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-.tabla-clasificacion th, .tabla-clasificacion td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-}
-
-.tabla-clasificacion th {
-    background-color: #007bff;
-    color: white;
-}
-
-.tabla-clasificacion tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-.tabla-clasificacion tr:hover {
-    background-color: #ddd;
-}
-
-.fondo-verde {
-    background-color: #98FB98 !important; /* Color verde claro */
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
+    /* Contenedor de la tabla con scroll horizontal */
     .tabla-container {
-        padding: 10px;
-        overflow-x: auto; /* Añadido para permitir el desplazamiento horizontal */
+        width: 90%;
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+        overflow-x: auto; /* Permite desplazamiento horizontal */
+        overflow-y: hidden;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.26);
     }
 
+    /* Contenedor extra para el scroll vertical dentro de la tabla */
+    .tabla-scroll {
+        max-height: 500px; /* Limita la altura */
+        overflow-y: auto; /* Agrega scroll vertical */
+    }
+
+    /* Tabla */
     .tabla-clasificacion {
-        display: block;
         width: 100%;
-        overflow-x: auto;
-        white-space: nowrap;
+        min-width: 800px; /* Evita que se comprima demasiado en pantallas pequeñas */
+        border-collapse: collapse;
+        margin-top: 20px;
     }
 
-    .tabla-clasificacion th, .tabla-clasificacion td {
-        display: block;
-        width: 100%;
-        text-align: left;
-        padding: 8px;
+    /* Estilos de celdas */
+    .tabla-clasificacion th,
+    .tabla-clasificacion td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
     }
 
+    /* Cabecera */
     .tabla-clasificacion th {
-        background-color: #007bff;
+        background-color: rgb(29, 95, 29);
         color: white;
         position: sticky;
         top: 0;
-        z-index: 1;
+        z-index: 2;
     }
 
-    .tabla-clasificacion tr {
-        display: flex;
-        flex-direction: column;
-        border-bottom: 1px solid #ddd;
-        margin-bottom: 10px;
-    }
-
+    /* Filas alternas */
     .tabla-clasificacion tr:nth-child(even) {
-        background-color: transparent;
+        background-color: #f2f2f2;
     }
 
     .tabla-clasificacion tr:hover {
-        background-color: transparent;
+        background-color: #ddd;
     }
-}
+
+    /* Resaltar Racing */
+    .fondo-verde {
+        background-color: #98FB98 !important;
+    }
+
+    /* Hacer la tabla responsive */
+    @media (max-width: 768px) {
+        .tabla-container {
+            width: 95%;
+            padding: 10px;
+        }
+
+        .tabla-scroll {
+            max-height: 400px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            padding: 15px;
+        }
+
+        .tabla-clasificacion th,
+        .tabla-clasificacion td {
+            padding: 8px;
+            font-size: 0.9rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .tabla-container {
+            width: 100%;
+            padding: 5px;
+        }
+
+        .tabla-scroll {
+            max-height: 300px;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            padding: 10px;
+        }
+
+        .tabla-clasificacion th,
+        .tabla-clasificacion td {
+            padding: 5px;
+            font-size: 0.8rem;
+        }
+    }
+
+    @media (max-width: 320px) {
+        .tabla-container {
+            width: 80%;
+            padding: 5px;
+        }
+
+        .tabla-scroll {
+            max-height: 300px;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            padding: 10px;
+        }
+
+        .tabla-clasificacion th,
+        .tabla-clasificacion td {
+            padding: 5px;
+            font-size: 0.8rem;
+        }
+    }
+

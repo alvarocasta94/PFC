@@ -1,0 +1,67 @@
+/* Contenedor principal */
+.container-fluid {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 12px;
+}
+
+body{
+    background-color: #f4f4f4;
+}
+
+/* Título */
+h1 {
+    width: 100%;
+    text-align: center;
+    color: white;
+    background-color: #2d8e2d;
+    padding: 20px;
+    font-size: 2.5rem;
+    margin: 0 auto;
+}
+
+/* Contenedor del formulario */
+.contenedor-login {
+    margin-top: 20px;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Estilos para los inputs */
+label {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 5px;
+    text-align: left;
+    color: #555;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.btn {
+    background-color: #2d8e2d;
+    color: white;
+}
+
+.btn:hover{
+    background-color: rgb(29, 95, 29);
+    color: white;
+}
+
+
