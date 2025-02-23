@@ -20,6 +20,7 @@ h1 {
     background: white;
     border-radius: 12px;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    overflow-x: auto; /* Añadido para permitir el desplazamiento horizontal */
 }
 
 .tabla-clasificacion {
@@ -55,26 +56,21 @@ h1 {
 @media (max-width: 768px) {
     .tabla-container {
         padding: 10px;
-    }
-
-    .tabla-clasificacion th, .tabla-clasificacion td {
-        padding: 8px;
-    }
-
-    h1 {
-        font-size: 1.5rem;
+        overflow-x: auto; /* Añadido para permitir el desplazamiento horizontal */
     }
 
     .tabla-clasificacion {
         display: block;
+        width: 100%;
         overflow-x: auto;
         white-space: nowrap;
     }
 
     .tabla-clasificacion th, .tabla-clasificacion td {
-        display: inline-block;
-        width: auto;
+        display: block;
+        width: 100%;
         text-align: left;
+        padding: 8px;
     }
 
     .tabla-clasificacion th {
@@ -83,5 +79,20 @@ h1 {
         position: sticky;
         top: 0;
         z-index: 1;
+    }
+
+    .tabla-clasificacion tr {
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid #ddd;
+        margin-bottom: 10px;
+    }
+
+    .tabla-clasificacion tr:nth-child(even) {
+        background-color: transparent;
+    }
+
+    .tabla-clasificacion tr:hover {
+        background-color: transparent;
     }
 }

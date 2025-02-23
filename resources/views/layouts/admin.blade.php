@@ -1,40 +1,32 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; padding: 20px; background: #f8f9fa; }
-        header { background: #333; color: white; padding: 10px; text-align: center; }
-        nav a { color: white; margin: 0 15px; text-decoration: none; }
-        .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 10px; }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    @yield('styles')
 </head>
 <body>
-    
-    <header>
-    <nav>
-        <ul>
-            <li><a href="{{ url('/admin/dashboard') }}">Dashboard</a></li>
-            <li><a href="{{ url('/admin/partidos') }}">Gestión de Partidos</a></li>
-            <li><a href="{{ url('/admin/equipos') }}">Clasificación</a></li>
-            <li>
-                <a href="{{ route('admin.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    Cerrar sesión
-                </a>
-                <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-            </li>
-        </ul>
-    </nav>
-</header>
-
-    
-
-    <div class="container">
-        @yield('content')
+    <div id="app">
+        <nav class="navbar">
+            <div class="container">
+                <a href="{{ url('/admin') }}" class="navbar-brand">Admin Panel</a>
+                <div class="navbar-nav">
+                    <a href="{{ url('/admin/partidos') }}" class="nav-item nav-link">Gestionar Partidos</a>
+                    <a href="{{ url('/admin/equipos') }}" class="nav-item nav-link">Gestionar Clasificación</a>
+                    <form action="{{ route('admin.logout') }}" method="POST" style="display: inline;">
+                        @csrf
+                        <button type="submit" class="nav-item nav-link btn-link">Cerrar Sesión</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <main class="py-4">
+            @yield('content')
+        </main>
     </div>
+    <script src="{{ asset('js/app.js') }}"></script>
+    @yield('scripts')
 </body>
 </html>

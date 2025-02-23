@@ -36,7 +36,7 @@
                 <td>{{ $equipo->goles_a_favor - $equipo->goles_en_contra }}</td>
             </tr>
         @endforeach
-        </tbody>
+            </tbody>
         </table>
     </div>
 
@@ -72,6 +72,41 @@
         }
         .fondo-verde {
             background-color: #98FB98 !important; /* Color verde claro */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .tabla-container {
+                padding: 10px;
+            }
+
+            .tabla-clasificacion th, .tabla-clasificacion td {
+                padding: 8px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .tabla-clasificacion {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+
+            .tabla-clasificacion th, .tabla-clasificacion td {
+                display: inline-block;
+                width: auto;
+                text-align: left;
+            }
+
+            .tabla-clasificacion th {
+                background-color: #007bff;
+                color: white;
+                position: sticky;
+                top: 0;
+                z-index: 1;
+            }
         }
     </style>
 @endsection

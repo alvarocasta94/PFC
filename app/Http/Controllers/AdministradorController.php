@@ -15,6 +15,18 @@ class AdministradorController extends Controller
         return view('admin.dashboard');
     }
 
+    public function gestionarPartidos()
+    {
+        $partidos = Partido::all();
+        return view('admin.gestionar_partidos', compact('partidos'));
+    }
+
+    public function gestionarEquipos()
+    {
+        $equipos = Equipo::all();
+        return view('admin.gestionar_equipos', compact('equipos'));
+    }
+
     public function addResultado(Request $request, $partidoId)
     {
         $request->validate([
@@ -29,31 +41,27 @@ class AdministradorController extends Controller
             'goles_rival' => $request->goles_rival,
         ]);
 
-        $this->actualizarEquipo($partido);
-
         return redirect()->route('admin.gestionar_partidos')->with('success', 'Resultado actualizado');
     }
 
-    public function actualizarEquipo($partido)
+    public function updateEquipo(Request $request, $equipoId)
     {
-        $local = Equipo::where('nombre', 'Racing')->first();
-        $visitante = Equipo::where('nombre', $partido->rival)->first();
+        $request->validate([
+            'nombre' => 'required|string',
+            'puntos' => 'required|integer',
+            'partidos_jugados' => 'required|integer',
+            'victorias' => 'required|integer',
+            'empates' => 'required|integer',
+            'derrotas' => 'required|integer',
+            'goles_a_favor' => 'required|integer',
+            'goles_en_contra' => 'required|integer',
+        ]);
 
-        if (!$local || !$visitante) {
-            return;
-        }
+        $equipo = Equipo::findOrFail($equipoId);
 
-        if ($partido->goles_racing > $partido->goles_rival) {
-            $local->increment('puntos', 3);
-        } elseif ($partido->goles_racing < $partido->goles_rival) {
-            $visitante->increment('puntos', 3);
-        } else {
-            $local->increment('puntos', 1);
-            $visitante->increment('puntos', 1);
-        }
+        $equipo->update($request->all());
 
-        $local->save();
-        $visitante->save();
+        return redirect()->route('admin.gestionar_equipos')->with('success', 'Estadísticas del equipo actualizadas');
     }
 
     public function showLoginForm()
@@ -67,11 +75,20 @@ class AdministradorController extends Controller
             'usuario' => 'required|string',
             'password' => 'required|string',
         ]);
-    
-        if (Auth::guard('admin')->attempt($credentials)) {
+
+        $admin = Administrador::where('usuario', $credentials['usuario'])->first();
+
+        if ($admin && $admin->password === $credentials['password']) {
+            Auth::guard('admin')->loginUsingId($admin->id);
             return redirect()->route('admin.dashboard');
         }
-    
+
         return back()->withErrors(['usuario' => 'Credenciales incorrectas'])->onlyInput('usuario');
+    }
+
+    public function logout()
+    {
+        Auth::guard('admin')->logout();
+        return redirect()->route('admin.login');
     }
 }
