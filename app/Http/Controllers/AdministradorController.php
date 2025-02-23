@@ -67,11 +67,11 @@ class AdministradorController extends Controller
             'usuario' => 'required|string',
             'password' => 'required|string',
         ]);
-    
+
         if (Auth::guard('admin')->attempt($credentials)) {
             return redirect()->route('admin.dashboard');
         }
-    
+
         return back()->withErrors(['usuario' => 'Credenciales incorrectas'])->onlyInput('usuario');
     }
 }

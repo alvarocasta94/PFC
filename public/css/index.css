@@ -1,0 +1,295 @@
+/* General */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Animación para el fondo (solo en resoluciones desktop) */
+@keyframes slideImages {
+    0% {
+        background-image: url('../img/fondos/fondo1.jpg');
+    }
+    33% {
+        background-image: url('../img/fondos/fondo2.jpg');
+    }
+    66% {
+        background-image: url('../img/fondos/fondo3.jpg');
+    }
+    100% {
+        background-image: url('../img/fondos/fondo1.jpg');
+    }
+}
+
+/* Fondo animado solo para desktop */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Para que quede detrás del contenido */
+    transition: background-image 1s ease-in-out;
+}
+
+/* Capa oscura encima del fondo */
+body::after {
+    content: "";
+    position: fixed; /* Usar 'fixed' para asegurar que el fondo siempre esté fijo */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Capa oscura */
+    z-index: -1;
+    pointer-events: none; /* Asegura que no interrumpa la interacción con el contenido */
+}
+
+/* Fondo animado solo en pantallas grandes (desktop) */
+@media (min-width: 1024px) {
+    body::before {
+        animation: slideImages 15s infinite;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+}
+
+/* Contenedor principal */
+.container-fluid {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Título */
+h1 {
+    width: 100%;
+    text-align: center;
+    color: white;
+    background-color: #2d8e2d;
+    padding: 20px;
+    font-size: 2.5rem;
+    margin: 0 auto;
+}
+
+/* Contenedor de tarjetas */
+.inicio-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 90%;
+    max-width: 1200px;
+    margin-top: 20px;
+    animation: fadeIn 1.5s ease-in-out 0.5s forwards;
+}
+
+/* Tarjetas */
+.inicio-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+    height: auto; /* Altura fija para mantener la proporción */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Alinea el botón abajo */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp 1s ease-in-out 1s forwards;
+}
+
+/* Forzar que el texto ocupe el espacio necesario para empujar el botón hacia abajo */
+.inicio-card p {
+    flex-grow: 1;
+}
+
+/* Tarjetas: Hover */
+.inicio-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Botones alineados al final */
+.btn-ver-partidos,
+.btn-ver-clasificacion {
+    background-color: #2d8e2d;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 12px 18px;
+    border-radius: 8px;
+    transition: background 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+    margin-top: auto; /* Mantiene el botón abajo */
+}
+
+/* Botones: Hover */
+.btn-ver-partidos:hover,
+.btn-ver-clasificacion:hover {
+    background-color: rgb(29, 95, 29);
+    transform: scale(1.05);
+}
+
+.bi {
+    margin: 0 auto;
+    padding: 5px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px){
+    h1 {
+        font-size: 2rem;
+        padding: 15px;
+    }
+
+    .inicio-container {
+        flex-direction: row; /* Cambiar de columna a fila */
+        justify-content: space-between; /* Asegura que las tarjetas se distribuyan en fila */
+        gap: 20px;
+    }
+
+    .inicio-card {
+        width: 48%; /* Ajustar el tamaño de las tarjetas para que quepan en una fila */
+        height: auto;
+    }
+    
+    /* Para evitar que el fondo se vea borroso en dispositivos más pequeños */
+    body::before {
+        background-position: center;
+    }
+}
+
+/* Fondo estático en dispositivos móviles */
+@media (max-width: 768px) {
+    body::before {
+        content: "";
+        position: fixed; /* Usar 'fixed' para asegurar que el fondo siempre esté fijo */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('../img/fondos/fondo1.jpg');
+        background-size: cover; /* Asegura que cubra toda la pantalla */
+        background-position: center;
+        background-repeat: no-repeat;
+        z-index: -1;
+        transition: background-image 1s ease-in-out;
+    }
+}
+
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+        padding: 10px;
+    }
+
+    .inicio-card {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .btn-ver-partidos,
+    .btn-ver-clasificacion {
+        font-size: 1rem;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 425px){
+    h1 {
+        font-size: 1.5rem; /* Ajustamos el tamaño de la fuente para que sea más pequeño */
+        padding: 8px; /* Reducimos el padding */
+    }
+
+    .inicio-container {
+         flex-direction: column;
+        align-items: center;
+        gap: 10px; /* Reducimos el espacio entre tarjetas */
+    }
+
+    .inicio-card {
+        width: 90%; /* Aseguramos que las tarjetas se ajusten al tamaño de la pantalla */
+        height: auto;
+        padding: 5px; /* Ajustamos el padding */
+    }
+
+    .btn-ver-partidos,
+    .btn-ver-clasificacion {
+        font-size: 0.9rem; /* Reducimos el tamaño de fuente del botón */
+        padding: 8px 12px; /* Reducimos el padding del botón */
+    }
+}
+
+@media (max-width: 375px){
+    h1 {
+        font-size: 1.5rem; /* Ajustamos el tamaño de la fuente para que sea más pequeño */
+        padding: 8px; /* Reducimos el padding */
+    }
+
+    .inicio-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px; /* Reducimos el espacio entre tarjetas */
+    }
+
+    .inicio-card {
+        width: 90%; /* Aseguramos que las tarjetas se ajusten al tamaño de la pantalla */
+        height: auto;
+        padding: 5px; /* Ajustamos el padding */
+    }
+
+    .btn-ver-partidos,
+    .btn-ver-clasificacion {
+        font-size: 0.9rem; /* Reducimos el tamaño de fuente del botón */
+        padding: 8px 12px; /* Reducimos el padding del botón */
+    }
+}
+
+@media (max-width: 320px) {
+    h1 {
+        font-size: 1.5rem; /* Ajustamos el tamaño de la fuente para que sea más pequeño */
+        padding: 8px; /* Reducimos el padding */
+    }
+
+    .inicio-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px; /* Reducimos el espacio entre tarjetas */
+    }
+
+    .inicio-card {
+        width: 90%; /* Aseguramos que las tarjetas se ajusten al tamaño de la pantalla */
+        height: auto;
+        padding: 5px; /* Ajustamos el padding */
+    }
+
+    .btn-ver-partidos,
+    .btn-ver-clasificacion {
+        font-size: 0.9rem; /* Reducimos el tamaño de fuente del botón */
+        padding: 8px 12px; /* Reducimos el padding del botón */
+    }
+}
+
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

@@ -1,9 +1,12 @@
 @extends('layouts.app')
 
 @section('title', 'Admin Login')
-
+<h1>Iniciar Sesión</h1>
 @section('content')
-    <h1>Iniciar Sesión</h1>
+
+<link rel="stylesheet" href="{{ asset('css/login.css') }}">
+
+<div class="contenedor-login">
     <form method="POST" action="{{ route('admin.login') }}">
         @csrf
         <label>Usuario:</label>
@@ -12,6 +15,7 @@
         <label>Contraseña:</label>
         <input type="password" name="password" required>
         <br>
-        <button type="submit">Iniciar sesión</button>
+        <button class="btn" type="submit">Iniciar sesión</button>
     </form>
+</div>
 @endsection
