@@ -3,87 +3,52 @@
 @section('title', 'Gestionar Clasificación')
 
 @section('content')
-    <h1>Gestión de Clasificación</h1>
+<div class="container">
+    <h1 class="text-center mb-4">Gestión de Clasificación</h1>
 
     @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     @endif
 
     <!-- Tabla de clasificación -->
-    <table class="tabla-gestion">
-        <thead>
-            <tr>
-                <th>Equipo</th>
-                <th>Puntos</th>
-                <th>PJ</th>
-                <th>V</th>
-                <th>E</th>
-                <th>D</th>
-                <th>GF</th>
-                <th>GC</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($equipos as $equipo)
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="table-secondary text-center">
                 <tr>
-                    <form action="{{ route('admin.updateEquipo', $equipo->id) }}" method="POST">
+                    <th>Equipo</th>
+                    <th>Puntos</th>
+                    <th>PJ</th>
+                    <th>V</th>
+                    <th>E</th>
+                    <th>D</th>
+                    <th>GF</th>
+                    <th>GC</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($equipos as $equipo)
+                <tr>
+                    <form action="{{ route('admin.updateEquipo', $equipo->id) }}" method="POST" class="d-flex flex-column flex-md-row gap-2 align-items-center">
                         @csrf
                         @method('PUT')
-                        <td><input type="text" name="nombre" value="{{ $equipo->nombre }}" required></td>
-                        <td><input type="number" name="puntos" value="{{ $equipo->puntos }}" required></td>
-                        <td><input type="number" name="partidos_jugados" value="{{ $equipo->partidos_jugados }}" required></td>
-                        <td><input type="number" name="victorias" value="{{ $equipo->victorias }}" required></td>
-                        <td><input type="number" name="empates" value="{{ $equipo->empates }}" required></td>
-                        <td><input type="number" name="derrotas" value="{{ $equipo->derrotas }}" required></td>
-                        <td><input type="number" name="goles_a_favor" value="{{ $equipo->goles_a_favor }}" required></td>
-                        <td><input type="number" name="goles_en_contra" value="{{ $equipo->goles_en_contra }}" required></td>
-                        <td><button type="submit" class="btn">Actualizar</button></td>
+                        <td><input type="text" name="nombre" class="form-control form-control-sm text-center" value="{{ $equipo->nombre }}" required></td>
+                        <td><input type="number" name="puntos" class="form-control form-control-sm text-center" value="{{ $equipo->puntos }}" required></td>
+                        <td><input type="number" name="partidos_jugados" class="form-control form-control-sm text-center" value="{{ $equipo->partidos_jugados }}" required></td>
+                        <td><input type="number" name="victorias" class="form-control form-control-sm text-center" value="{{ $equipo->victorias }}" required></td>
+                        <td><input type="number" name="empates" class="form-control form-control-sm text-center" value="{{ $equipo->empates }}" required></td>
+                        <td><input type="number" name="derrotas" class="form-control form-control-sm text-center" value="{{ $equipo->derrotas }}" required></td>
+                        <td><input type="number" name="goles_a_favor" class="form-control form-control-sm text-center" value="{{ $equipo->goles_a_favor }}" required></td>
+                        <td><input type="number" name="goles_en_contra" class="form-control form-control-sm text-center" value="{{ $equipo->goles_en_contra }}" required></td>
+                        <td><button type="submit" class="btn btn-sm btn-primary">Actualizar</button></td>
                     </form>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
-
-    <style>
-        .tabla-gestion {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        .tabla-gestion th, .tabla-gestion td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: center;
-        }
-        .tabla-gestion th {
-            background-color: #007bff;
-            color: white;
-        }
-        .tabla-gestion tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        .tabla-gestion tr:hover {
-            background-color: #ddd;
-        }
-        .btn {
-            background-color: #007bff;
-            color: white;
-            padding: 5px 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .btn:hover {
-            background-color: #0056b3;
-        }
-        .alert {
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            margin-bottom: 15px;
-        }
-    </style>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
 @endsection
